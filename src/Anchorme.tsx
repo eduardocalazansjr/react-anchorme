@@ -24,7 +24,13 @@ const Anchorme = ({ children, ...rest }: Props) => {
 			}
 
 			// Push Link component
-			elements.push(<Link {...rest} key={index} href={match.string} />)
+			elements.push(
+				anchorme.validate.url(match.string) ? (
+					<Link {...rest} key={index} href={match.string} />
+				) : (
+					match.string
+				),
+			)
 
 			lastIndex = match.end
 		})
